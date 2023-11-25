@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Inputs : MonoBehaviour
 {
-    //public static PlayerActions _actions;
+    public static PlayerAction _actions;
     public static PlayerControl _player;
 
     public static void BindNewPlayer(PlayerControl player)
@@ -14,18 +14,18 @@ public class Inputs : MonoBehaviour
 
     public static void Init(PlayerControl player)
     {
-        //_actions = new PlayerActions();
+        _actions = new PlayerAction();
         BindNewPlayer(player);
 
-        //_actions.Player.Move.performed += ctx => _player.Move(ctx.ReadValue<Vector2>());
+        _actions.Player.Movement.performed += ctx => _player.Move(ctx.ReadValue<Vector2>());
 
         PlayMode();
     }
 
     public static void PlayMode()
     {
-        //_actions.Player.Enable();
-        //_actions.UI.Disable();
+        _actions.Player.Enable();
+        _actions.UI.Disable();
     }
 
 }
