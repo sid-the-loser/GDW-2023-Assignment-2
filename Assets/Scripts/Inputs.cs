@@ -18,14 +18,21 @@ public class Inputs : MonoBehaviour
         BindNewPlayer(player);
 
         _actions.Player.Movement.performed += ctx => _player.Move(ctx.ReadValue<Vector2>());
+        _actions.Player.Jump.performed += ctx => _player.Jump();
 
-        PlayMode();
+        SetPlayerControls();
     }
 
-    public static void PlayMode()
+    public static void SetPlayerControls()
     {
         _actions.Player.Enable();
         _actions.UI.Disable();
+    }
+
+    public static void SetUIControls()
+    {
+        _actions.Player.Disable();
+        _actions.UI.Enable();
     }
 
 }
