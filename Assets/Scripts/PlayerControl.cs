@@ -23,7 +23,7 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector2.right * (_speed * Time.deltaTime * _move.x), Space.Self);
-        isGrounded = Physics2D.BoxCast(GetComponent<Collider2D>().bounds.center, GetComponent<Collider2D>().bounds.size, 0f, Vector2.down, 1f, platformLayerMask);
+        isGrounded = Physics2D.BoxCast(GetComponent<Collider2D>().bounds.center, GetComponent<Collider2D>().bounds.size, 0f, Vector2.down, 0.2f, platformLayerMask);
     }
 
     public void Move(Vector2 direction)
