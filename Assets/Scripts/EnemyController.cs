@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private LayerMask playerLayerMask;
 
     Rigidbody2D rb2D;
+    PlayerControl player;
 
     [SerializeField] private float speed;
     private bool movingLeft = true;
@@ -45,6 +46,7 @@ public class EnemyController : MonoBehaviour
         else if (collision.gameObject.tag == "Player" && headStomped == false)
         {
             Debug.Log("Damaged player");
+            //player.Health--;
             movingLeft = !movingLeft;
         }
         else
