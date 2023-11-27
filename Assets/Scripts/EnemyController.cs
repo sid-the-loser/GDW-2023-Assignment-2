@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour
             transform.Translate(Vector2.left * (speed * Time.deltaTime), Space.Self);
         }
 
-        headStomped = Physics2D.BoxCast(GetComponent<Collider2D>().bounds.max, GetComponent<Collider2D>().bounds.size, 0f, Vector2.up, 0.1f, playerLayerMask);
+        headStomped = Physics2D.BoxCast(GetComponent<Collider2D>().bounds.center, GetComponent<Collider2D>().bounds.size, 0f, Vector2.up, 0.1f, playerLayerMask);
 
         if (transform.position.y < -12)
         {
