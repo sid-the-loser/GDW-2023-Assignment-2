@@ -23,13 +23,17 @@ public class EnemyController : MonoBehaviour
         if (movingLeft)
         {
             transform.Translate(Vector2.right * (speed * Time.deltaTime), Space.Self);
+            // Uses rigidbody to move creating more natural movement
+            //rb2D.velocity += new Vector2(speed * Time.deltaTime, 0);
         }
         else
         {
             transform.Translate(Vector2.left * (speed * Time.deltaTime), Space.Self);
+            //rb2D.velocity += new Vector2(-speed * Time.deltaTime, 0);
         }
 
-        headStomped = Physics2D.BoxCast(GetComponent<Collider2D>().bounds.center, GetComponent<Collider2D>().bounds.size, 0f, Vector2.up, 0.1f, playerLayerMask);
+        // Using a boxcast checking if the player is directly on top of the enemy
+        headStomped = Physics2D.BoxCast(GetComponent<Collider2D>().bounds.center, GetComponent<Collider2D>().bounds.size - new Vector3(0.5f, 0, 0), 0f, Vector2.up, 0.1f, playerLayerMask);
 
         if (transform.position.y < -12)
         {
@@ -47,7 +51,6 @@ public class EnemyController : MonoBehaviour
         {
             Debug.Log("Damaged player");
             //player.Health--;
-            movingLeft = !movingLeft;
         }
         else
         {
