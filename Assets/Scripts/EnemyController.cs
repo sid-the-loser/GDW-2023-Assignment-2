@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        player = GetComponent<PlayerControl>();
     }
 
     void Update()
