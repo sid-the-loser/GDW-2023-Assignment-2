@@ -16,7 +16,7 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         rb2D = GetComponent<Rigidbody2D>();
-        player = GetComponent<PlayerControl>();
+        player = GameObject.Find("Player").GetComponent<PlayerControl>();
     }
 
     void Update()
@@ -51,7 +51,7 @@ public class EnemyController : MonoBehaviour
         else if (collision.gameObject.tag == "Player" && headStomped == false)
         {
             Debug.Log("Damaged player");
-            //player.Health--;
+            player.Health--;
         }
         else
         {

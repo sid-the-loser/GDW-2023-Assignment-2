@@ -18,7 +18,7 @@ public class PowerUp : MonoBehaviour
 
     void Start()
     {
-        player = GetComponent<PlayerControl>();
+        player = GameObject.Find("Player").GetComponent<PlayerControl>();
     }
 
     void Update()
@@ -33,7 +33,7 @@ public class PowerUp : MonoBehaviour
                     isActive = false;
                     break;
                 case PowerUpType.IncreaseHealth:
-                    //player.Health++;
+                    player.Health++;
                     Debug.Log("Increased health");
                     isActive = false;
                     break;
