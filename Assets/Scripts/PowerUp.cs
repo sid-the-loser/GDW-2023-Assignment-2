@@ -29,6 +29,14 @@ public class PowerUp : MonoBehaviour
             switch (pType)
             {
                 case PowerUpType.IncreaseSanity:
+                    if (player.Sanity < 0.5f)
+                    {
+                        player.Sanity += 0.5f;
+                    }
+                    else
+                    {
+                        player.Sanity = 1f;
+                    }
                     Debug.Log("Increased sanity");
                     isActive = false;
                     break;

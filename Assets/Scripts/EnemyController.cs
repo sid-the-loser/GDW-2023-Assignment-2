@@ -51,7 +51,7 @@ public class EnemyController : MonoBehaviour
         else if (collision.gameObject.tag == "Player" && headStomped == false)
         {
             Debug.Log("Damaged player");
-            player.Health--;
+            player.TakeDamage();
         }
         else
         {
