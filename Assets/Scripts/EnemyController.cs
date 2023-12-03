@@ -34,7 +34,7 @@ public class EnemyController : MonoBehaviour
         }
 
         // Using a boxcast checking if the player is directly on top of the enemy
-        headStomped = Physics2D.BoxCast(GetComponent<Collider2D>().bounds.center, GetComponent<Collider2D>().bounds.size - new Vector3(0.5f, 0, 0), 0f, Vector2.up, 0.1f, playerLayerMask);
+        headStomped = Physics2D.BoxCast(GetComponent<Collider2D>().bounds.center, GetComponent<Collider2D>().bounds.size - new Vector3(0.4f, 0, 0), 0f, Vector2.up, 0.1f, playerLayerMask);
 
         if (transform.position.y < -12)
         {

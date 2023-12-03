@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private LayerMask platformLayerMask;
+    private UIManager manager;
 
     Rigidbody2D _rb2D;
     private Vector2 _move;
@@ -56,6 +57,7 @@ public class PlayerControl : MonoBehaviour
     {
         _rb2D = GetComponent<Rigidbody2D>();
         _camera = Camera.main;
+        manager = GameObject.Find("GameManager").GetComponent<UIManager>();
         _health = 1;
         _sanity = 1f;
         Inputs.Init(this);
@@ -72,6 +74,16 @@ public class PlayerControl : MonoBehaviour
             float slowSpeed = _speed * 0.75f;
             transform.Translate(Vector2.right * (slowSpeed * Time.deltaTime * _move.x), Space.Self);
         }
+
+        if (_sanity > 0.5f)
+        {
+            manager.SetScreenNormal();
+        }
+        else if (_sanity <= 0.5f)
+        {
+            manager.ObscureScreen();
+        }
+
         // Makes the camera follow the x-position of the player
         _camera.transform.position = new Vector3(transform.position.x, 0, -10);
 
@@ -80,7 +92,7 @@ public class PlayerControl : MonoBehaviour
             StartCoroutine(SanityDrain());
         }
 
-        if (_health <= 0 || _sanity <= 0)
+        if (_health <= 0 || _sanity <= 0 || transform.position.y < -5)
         {
             Die();
         }
@@ -101,7 +113,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (isGrounded)
         {
-            _rb2D.velocity = new Vector2(_rb2D.velocity.x, _jumpForce);
+            _rb2D.velocity = Vector2.up * _jumpForce;
         }
     }
 
