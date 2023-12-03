@@ -63,10 +63,18 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector2.right * (_speed * Time.deltaTime * _move.x), Space.Self);
+        if (_sanity > 0.75f)
+        {
+            transform.Translate(Vector2.right * (_speed * Time.deltaTime * _move.x), Space.Self);
+        }
+        else if (_sanity <= 0.75f)
+        {
+            float slowSpeed = _speed * 0.75f;
+            transform.Translate(Vector2.right * (slowSpeed * Time.deltaTime * _move.x), Space.Self);
+        }
         // Makes the camera follow the x-position of the player
         _camera.transform.position = new Vector3(transform.position.x, 0, -10);
-        
+
         if (!isSanityDraining)
         {
             StartCoroutine(SanityDrain());
