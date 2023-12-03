@@ -6,6 +6,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI coinUI;
+    [SerializeField] private GameObject panel;
     private int totalCoins = 0;
 
     void Awake()
@@ -24,5 +25,15 @@ public class UIManager : MonoBehaviour
         {
             coinUI.text = $"x{totalCoins}";
         }
+    }
+
+    public void ObscureScreen()
+    {
+        panel.SetActive(true);
+    }
+
+    public void SetScreenNormal()
+    {
+        panel.SetActive(false);
     }
 }

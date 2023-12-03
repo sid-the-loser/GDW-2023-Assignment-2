@@ -37,12 +37,10 @@ public class PowerUp : MonoBehaviour
                     {
                         player.Sanity = 1f;
                     }
-                    Debug.Log("Increased sanity");
                     isActive = false;
                     break;
                 case PowerUpType.IncreaseHealth:
                     player.Health++;
-                    Debug.Log("Increased health");
                     isActive = false;
                     break;
                 case PowerUpType.MakeInvincible:
