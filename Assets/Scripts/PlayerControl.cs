@@ -71,6 +71,7 @@ public class PlayerControl : MonoBehaviour
         manager = GameObject.Find("GameManager").GetComponent<UIManager>();
         _health = 1;
         _sanity = 1f;
+        UIManager.TotalCoins = 0;
         Inputs.Init(this);
         Inputs.SetPlayerControls();
     }

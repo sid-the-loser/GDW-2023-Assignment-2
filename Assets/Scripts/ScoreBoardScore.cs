@@ -21,7 +21,6 @@ public class ScoreBoardScore : MonoBehaviour
         else
         {
             _tmp.text = $"Score: {UIManager.TotalCoins}\n\n\nPress Enter to Restart";
-            UIManager.TotalCoins = 0;
         }
     }
 
