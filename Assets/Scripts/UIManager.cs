@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
-        coinUI.text = "x00";
+        coinUI.text = "C:00";
     }
 
     public void UpdateCounter()

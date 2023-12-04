@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Inputs : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class Inputs : MonoBehaviour
 
         _actions.Player.Movement.performed += ctx => _player.Move(ctx.ReadValue<Vector2>());
         _actions.Player.Jump.performed += ctx => _player.Jump();
+        _actions.Player.Reset.performed += ctx => SceneManager.LoadScene("TitleScreen");
 
         //SetPlayerControls();
     }
