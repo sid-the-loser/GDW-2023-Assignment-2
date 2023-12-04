@@ -7,7 +7,9 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI coinUI;
     [SerializeField] private GameObject panel;
-    private int totalCoins = 0;
+    public static int TotalCoins = 0;
+    
+    public AudioClip _coinSfx;
 
     void Awake()
     {
@@ -16,14 +18,14 @@ public class UIManager : MonoBehaviour
 
     public void UpdateCounter()
     {
-        totalCoins++;
-        if (totalCoins < 10)
+        
+        if (TotalCoins < 10)
         {
-            coinUI.text = $"x0{totalCoins}";
+            coinUI.text = $"x0{TotalCoins}";
         }
         else
         {
-            coinUI.text = $"x{totalCoins}";
+            coinUI.text = $"x{TotalCoins}";
         }
     }
 

@@ -141,13 +141,14 @@ public class PlayerControl : MonoBehaviour
         }
     }
     
-    public IEnumerator OnBecameInvisible()
+    public IEnumerator OnBecameInvisible()//(GameObject powerup)
     {
         isInvincible = true;
         _spriteRenderer.sprite = invincibleSprite;
         yield return new WaitForSeconds(5);
         isInvincible = false;
         _spriteRenderer.sprite = normalSprite;
+        //Destroy(powerup);
     }
 
     IEnumerator SanityDrain()
