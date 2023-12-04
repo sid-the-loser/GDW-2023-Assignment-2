@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -17,6 +19,12 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float _jumpForce;
     private int _health;
     private float _sanity;
+
+    [SerializeField] private AudioClip jumpSfx;
+
+    [SerializeField] private Sprite normalSprite;
+    [SerializeField] private Sprite invincibleSprite;
+    private SpriteRenderer _spriteRenderer;
 
     public int Health
     {
@@ -53,14 +61,18 @@ public class PlayerControl : MonoBehaviour
     // When true, the coroutine won't be called, so the player's sanity won't decrease every frame
     private bool isSanityDraining;
 
+    private bool isInvincible;
+
     void Awake()
     {
         _rb2D = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         _camera = Camera.main;
         manager = GameObject.Find("GameManager").GetComponent<UIManager>();
         _health = 1;
         _sanity = 1f;
         Inputs.Init(this);
+        Inputs.SetPlayerControls();
     }
 
     void Update()
@@ -68,6 +80,7 @@ public class PlayerControl : MonoBehaviour
         if (_sanity > 0.75f)
         {
             transform.Translate(Vector2.right * (_speed * Time.deltaTime * _move.x), Space.Self);
+            // _rb2D.velocity = new Vector2(_speed*_move.x, _rb2D.velocity.y);// tried fixing the gitter effect when colliding with blocks, didn't work
         }
         else if (_sanity <= 0.75f)
         {
@@ -114,12 +127,27 @@ public class PlayerControl : MonoBehaviour
         if (isGrounded)
         {
             _rb2D.velocity = Vector2.up * _jumpForce;
+            AudioSource.PlayClipAtPoint(jumpSfx, transform.position);
+            // _rb2D.AddForce(Vector2.up * _jumpForce);
         }
     }
 
     public void TakeDamage()
     {
-        _health--;
+        if (!isInvincible)
+        {
+            Debug.Log("Damaged player!");
+            _health--;
+        }
+    }
+    
+    public IEnumerator OnBecameInvisible()
+    {
+        isInvincible = true;
+        _spriteRenderer.sprite = invincibleSprite;
+        yield return new WaitForSeconds(5);
+        isInvincible = false;
+        _spriteRenderer.sprite = normalSprite;
     }
 
     IEnumerator SanityDrain()
@@ -132,6 +160,7 @@ public class PlayerControl : MonoBehaviour
 
     private void Die()
     {
+        //StopCoroutine(OnBecameInvisible());
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

@@ -76,24 +76,24 @@
             "id": "e8e0f6e1-39ae-4094-9d29-4e0f32d3ae6b",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "AnyButton",
                     "type": "Button",
                     "id": "56f967cf-9e29-4145-98bc-a0b975d25c8a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "9e0cc1ab-20db-4877-9e7a-044801c25d4c",
-                    "path": "",
+                    "path": "<Keyboard>/anyKey",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "AnyButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

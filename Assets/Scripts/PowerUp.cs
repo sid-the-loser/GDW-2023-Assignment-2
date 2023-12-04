@@ -44,7 +44,8 @@ public class PowerUp : MonoBehaviour
                     isActive = false;
                     break;
                 case PowerUpType.MakeInvincible:
-                    Debug.Log("Invulnerable");
+                    // Debug.Log("Invulnerable");
+                    StartCoroutine(player.OnBecameInvisible());
                     isActive = false;
                     break;
             }
@@ -53,7 +54,7 @@ public class PowerUp : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
             // Sets the power up as active, and disables the object's collider and renderer so it can't be seen or picked up again
             isActive = true;

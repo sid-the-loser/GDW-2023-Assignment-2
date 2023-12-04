@@ -20,8 +20,14 @@ public class Inputs : MonoBehaviour
         _actions.Player.Movement.performed += ctx => _player.Move(ctx.ReadValue<Vector2>());
         _actions.Player.Jump.performed += ctx => _player.Jump();
 
-        SetPlayerControls();
+        //SetPlayerControls();
     }
+
+    /*public static void InitTitleControls(TitleScreenLogic title)
+    {
+        _actions = new PlayerAction();
+        _actions.UI.AnyButton.performed += ctx => title.ChangeScene();
+    }*/ //failed attempt on making title screen compatible with new input system
 
     public static void SetPlayerControls()
     {

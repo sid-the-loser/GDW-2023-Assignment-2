@@ -16,7 +16,7 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         rb2D = GetComponent<Rigidbody2D>();
-        player = GameObject.Find("Player").GetComponent<PlayerControl>();
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
     }
 
     void Update()
@@ -47,14 +47,16 @@ public class EnemyController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player" && headStomped == true)
+        if (collision.gameObject.CompareTag("Player") && headStomped == true)
         {
+            Debug.Log("Enemy died");
             Destroy(gameObject);
         }
-        else if (collision.gameObject.tag == "Player" && headStomped == false)
+        else if (collision.gameObject.CompareTag("Player") && headStomped == false)
         {
-            Debug.Log("Damaged player");
+            Debug.Log("Enemy attacked");
             player.TakeDamage();
+            movingLeft = !movingLeft;
         }
         else
         {
