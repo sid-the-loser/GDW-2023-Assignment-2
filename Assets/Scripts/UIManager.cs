@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,6 +8,8 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI coinUI;
     [SerializeField] private GameObject panel;
+    [SerializeField] private TextMeshProUGUI sanityMeterUI;
+    [SerializeField] private TextMeshProUGUI extraLifeUI;
     public static int TotalCoins = 0;
     
     public AudioClip _coinSfx;
@@ -18,15 +21,24 @@ public class UIManager : MonoBehaviour
 
     public void UpdateCounter()
     {
-        
         if (TotalCoins < 10)
         {
-            coinUI.text = $"x0{TotalCoins}";
+            coinUI.text = $"C:0{TotalCoins}";
         }
         else
         {
-            coinUI.text = $"x{TotalCoins}";
+            coinUI.text = $"C:{TotalCoins}";
         }
+    }
+
+    public void UpdateSanity(float sanityValue)
+    {
+        sanityMeterUI.text = $"S:{(int)(sanityValue * 100)}%";
+    }
+    
+    public void UpdateExl(float exlValue)
+    {
+        extraLifeUI.text = $"LIVES:{exlValue}";
     }
 
     public void ObscureScreen()

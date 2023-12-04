@@ -21,6 +21,7 @@ public class PlayerControl : MonoBehaviour
     private float _sanity;
 
     [SerializeField] private AudioClip jumpSfx;
+    [SerializeField] private AudioClip damageSfx;
 
     [SerializeField] private Sprite normalSprite;
     [SerializeField] private Sprite invincibleSprite;
@@ -110,6 +111,8 @@ public class PlayerControl : MonoBehaviour
         {
             Die();
         }
+        manager.UpdateSanity(_sanity);
+        manager.UpdateExl(_health);
     }
 
     void FixedUpdate()
@@ -138,6 +141,7 @@ public class PlayerControl : MonoBehaviour
         if (!isInvincible)
         {
             Debug.Log("Damaged player!");
+            AudioSource.PlayClipAtPoint(damageSfx, transform.position);
             _health--;
         }
     }
